@@ -1,23 +1,40 @@
-import { io } from "https://cdn.socket.io/4.8.1/socket.io.esm.min.js";
+// import { io } from "https://cdn.socket.io/4.8.1/socket.io.esm.min.js";
 
 const socket = io("ws://localhost:8000"); 
+const messages = document.querySelector("#messages");
+const activity = document.querySelector("#activity")
+const messageInput = document.querySelector("#message");
 
 function sendMessage(e) {
     e.preventDefault();
-    const input = e.target.querySelector("#message");
+    activity.textContent = "";
 
-    if (input.value) {
-        socket.emit("message", input.value);
-        input.values = "";
+    if (messageInput.value) {
+        socket.emit("message", messageInput.value);
+        messageInput.value = "";
     }
 
-    input.focus();
+    messageInput.focus();
 }
 
+
 document.querySelector("form").addEventListener("submit", sendMessage)
+messageInput.addEventListener("keypress", () => {
+    socket.emit("activity", socket.id.substring(0, 5));
+})
 
 socket.on("message", (data) => {
     const li = document.createElement("li");
     li.textContent = data; 
-    document.querySelector("#messages").appendChild(li);
+    messages.appendChild(li);
 });
+
+let activityTimer;
+socket.on("activity", (name) => {
+    activity.textContent = `${name} is typing...`;
+
+    activityTimer = setTimeout(() => {
+        activity.textContent = ""
+    }, 3000);
+    clearTimeout(activityTimer, 3000);
+})

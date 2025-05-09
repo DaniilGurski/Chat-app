@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Websockets</title>
 
-    <link href="./style.css" rel="stylesheet" type="text/css">
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.esm.min.js" integrity="sha512-GQ74pH/qf/bxye7SaDYq4uIbpXe08OC5tWNxw7vKaNuDUTcgK6SeBUwZffDsWFX7fWeLdvmbiH4T7qJNYp/D2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <link href="./style.css" rel="stylesheet" type="text/css" />
+    <script
+      src="https://cdn.socket.io/4.8.1/socket.io.min.js"
+      integrity="sha384-mkQ3/7FUtcGyoppY6bz/PORYoGqOl7/aSUMn2ymDOJcapfS6PHqxhRTMh1RR0Q6+"
+      crossorigin="anonymous"
+    ></script>
 
     <script src="./app.js" type="module" defer></script>
-</head>
-<body>
+  </head>
+  <body>
     <form>
-        <input id="message" type="text" placeholder="Your message">
-        <button id="submit-message" type="submit">Send</button>
+      <input id="message" type="text" placeholder="Your message" />
+      <button id="submit-message" type="submit">Send</button>
     </form>
 
     <ul id="messages"></ul>
-</body>
+
+    <span id="activity"> </span>
+  </body>
 </html>
