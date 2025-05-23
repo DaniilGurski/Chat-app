@@ -8,6 +8,8 @@
 
 :root {
     --border-color: #878787; 
+    --clr-user-header: #b0a65d;
+    --clr-reply-header: #723c72;
     --clr-black-100: #313131;
     --clr-black-200: #141414;
 }
@@ -73,12 +75,12 @@ button {
 }
 
 .post {
-    background-color: #eee;
-    border-radius: 10px;
+    flex-shrink: 0;
     padding: 0 0 .25rem;
     margin: .5rem;
+    background-color: #eee;
+    border-radius: 10px;
     overflow: hidden;
-    flex-shrink: 0;
 }
 
 .post--left {
@@ -92,20 +94,20 @@ button {
 }
 
 .post__header {
-    color: #fff;
-    padding: .25rem .5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: .5rem;
+    padding: .25rem .5rem;
+    color: #fff;
 }
 
 .post__header--user {
-    background-color: blue;
+    background-color: var(--clr-user-header);
 }
 
 .post__header--reply {
-    background-color: purple;
+    background-color: var(--clr-reply-header);
 }
 
 .post__header--name {
@@ -118,18 +120,18 @@ button {
 
 .post__text {
     margin-top: 5px;
-    color: #333;
     padding: .25rem .5rem;
+    color: #333;
 }
 
 .user-list,
 .room-list,
 .activity {
     width: 100%;
-    min-height: 2.65rem;
     margin: 0 auto;
-    max-width: 600px;
     padding: .75rem .25rem;
+    min-height: 2.65rem;
+    max-width: 600px;
 }
 
 .activity {

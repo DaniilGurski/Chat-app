@@ -18,8 +18,8 @@ const appServer = app.listen(PORT, () => {
 // custom state
 const UsersState = {
     users: [],
-    setUser: (newUsers) => {
-        this.users = newUsers;
+    setUsers: function (newUsersArray) {
+        this.users = newUsersArray
     }
 }
 
@@ -102,14 +102,12 @@ io.on("connection", socket => {
         if (room) {
             io.to(room).emit("message", buildMessage(name, text)); 
         }
-
-        io.emit("message", `${socket.id.substring(0, 5)}: ${data}`);
     })
 
     // Listening for activity event
     socket.on("activity", name => {
         const room = getUser(socket.id)?.room
-        
+
         if (room) {
             socket.broadcast.to(room).emit("activity", name);
         }
@@ -133,7 +131,7 @@ function activateUser(id, name, room) {
     const user = { id, name, room }
 
     // Make sure we don't have any dublicate users
-    UsersState.setUser([
+    UsersState.setUsers([
         ...UsersState.users.filter(user => user.id !== id),
         user
     ])
@@ -143,7 +141,7 @@ function activateUser(id, name, room) {
 
 
 function userLeaves(id) {
-    UsersState.setUser([
+    UsersState.setUsers([
         ...UsersState.users.filter(user => user.id !== id)
     ])
 }
@@ -155,7 +153,7 @@ function getUser(id) {
 
 
 function getUsersInRoom(room) {
-    return UsersState.users.find(user => user.room === room);
+    return UsersState.users.filter(user => user.room === room);
 }
 
 
