@@ -137,3 +137,33 @@ button {
 .activity {
     font-style: italic;
 }
+
+.submit-message {
+    position: relative;
+
+    &::before {
+        --_size: 35px;
+        content: "";
+        position: absolute;
+        z-index: -1;
+        width: var(--_size); 
+        height: var(--_size);
+
+        top: 0;
+        right:0;
+
+        background: url("./emoji.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+
+        transform: translateY(0);
+        transition: transform 2s;
+        transition-delay: 0;
+    }
+
+    &:hover::before {
+        transition-delay: 5s;
+        transform: translateY(-30px);
+    }
+}
